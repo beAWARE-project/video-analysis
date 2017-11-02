@@ -4,4 +4,4 @@ COPY src/listener.py /usr/src/listener/
 
 WORKDIR /usr/src/listener/
 
-CMD ["python3", "listener.py"]
+CMD ["python3", "dummy.py"]
