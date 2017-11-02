@@ -2,4 +2,4 @@ FROM ppgiannak/obd:latest
 
 WORKDIR /usr/src/dummy/
 
-CMD ["python3", "listener2.py"]
+CMD ["python3", "dummy.py"]
