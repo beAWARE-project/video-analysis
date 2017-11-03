@@ -11,9 +11,6 @@ import numpy as np
 import requests
 import skvideo.io
 
-HOST = ''   # Symbolic name meaning all available interfaces
-PORT = 9999 # Arbitrary non-privileged port
-
 cwd = os.getcwd()
 print(cwd)
 
@@ -22,7 +19,7 @@ print('Socket created')
  
 #Bind socket to local host and port
 try:
-    s.bind((HOST, PORT))
+    s.bind(('', 9999))
 except socket.error as msg:
     print('Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
     sys.exit()
