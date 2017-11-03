@@ -13,6 +13,6 @@ import skvideo.io
 cwd = os.getcwd()
 print(cwd)
 print('Hello World')
-print('Hello World')
-print('Hello World')
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print('Socket created')
 print('Hello World')
