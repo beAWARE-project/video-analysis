@@ -19,6 +19,6 @@ spec:
           # Change to your service name (kubernetes service)
           serviceName: video-analysis
           # Change to your service port
-          servicePort: 9999
+          servicePort: 7777
           # URL Suffix for example "/my-service"
         path: /video-analysis
