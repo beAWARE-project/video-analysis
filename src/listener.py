@@ -16,6 +16,22 @@ PORT = 9999 # Arbitrary non-privileged port
 
 storage_link = 'http://object-store-app.eu-gb.mybluemix.net/objectStorage?file='
 
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print('Socket created')
+ 
+#Bind socket to local host and port
+try:
+    s.bind((HOST, PORT))
+except socket.error as msg:
+    print('Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
+    sys.exit()
+     
+print('Socket bind complete')
+ 
+#Start listening on socket
+s.listen(10)
+print('Socket now listening')
+
 def download_from_storage(video_url):
     A = urllib.request.urlopen(video_url)
     data = A.read()
@@ -93,28 +109,7 @@ def clientthread(conn):
     conn.close()
     print('Connection closed')
     return
-
-print('Hello World')
-print('Hello World')
-print('Hello World')
-print('Hello World')
-print('Hello World')
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-print('Socket created')
- 
-#Bind socket to local host and port
-try:
-    s.bind((HOST, PORT))
-except socket.error as msg:
-    print('Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
-    sys.exit()
-     
-print('Socket bind complete')
- 
-#Start listening on socket
-s.listen(10)
-print('Socket now listening')
-#now keep talking with the client
+   
 while 1:
     #wait to accept a connection - blocking call
     print('Waiting for a new connection...')
