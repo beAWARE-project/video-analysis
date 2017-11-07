@@ -25,10 +25,5 @@ node ('beaware-jenkins-slave') {
         sh 'sleep 60'
         sh 'kubectl  -n prod logs deploy/video-analysis -c video-analysis'
     }
-	
-    stage ('Print status') {
-	sh 'sleep 10'
-	sh 'kubectl get pods'
-    }
 		
 }
