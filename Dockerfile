@@ -1,8 +1,9 @@
 FROM ppgiannak/obd:latest
 
-COPY src/listener.py /usr/src/listener/
-COPY src/dummy.py /usr/src/listener
+COPY src/video_listener.py /usr/src/listener/
 
 WORKDIR /usr/src/listener/
 
-CMD ["python3", "listener.py"]
+ENV PYTHONPATH="/usr/local/lib/python3.5/site-packages/tensorflow/models/:/usr/local/lib/python3.5/site-packages/tensorflow/models/slim:${PYTHONPATH}"
+
+CMD python3 video_listener.py
