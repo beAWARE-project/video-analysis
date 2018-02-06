@@ -9,7 +9,8 @@ import os
 import numpy as np
 import requests
 import skvideo.io
-#import video_analyzer
+import video_analyzer
+import datetime
 
 #get lock object
 lock = Lock()
@@ -52,13 +53,12 @@ def download_from_storage(video_url):
 
 def process_video(fps, width, height, frames, timestamp, file_name):
     start = time.time()
-    #TODO: load the analysis module
-    #here we just open the dummy files
+    video_analyzer.analyze(frames, width, height, fps, file_name, timestamp)
     end = time.time()
     runtime_a = end-start
     start = time.time()
-    bvid_output = open('flood-5544_output.avi', 'rb')
-    bjson_output = open('flood-5544_output.json', 'rb')
+    bjson_output = open('./output/'+file_name+'_output.json', 'rb')
+    bvid_output = open('./output/'+file_name+'_output.mp4', 'rb')
     save_to_storage(bvid_output, file_name+'_output.mp4')
     save_to_storage(bjson_output, file_name+'_output.json')
     bvid_output.close()
@@ -81,7 +81,8 @@ def handle_message(bmsg, conn):
     msg = bmsg.decode()
     mydict = json.loads(msg)
     video_url = mydict['message']['URL']
-    timestamp = mydict['message']['startTimeUTC']
+    #timestamp = mydict['message']['startTimeUTC']
+    timestamp = datetime.datetime.utcnow()
     start = time.time()
     fps, width, height, frames = download_from_storage(video_url)
     end = time.time()
