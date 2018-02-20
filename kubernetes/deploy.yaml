@@ -30,8 +30,8 @@ spec:
           protocol: TCP
         resources:
           requests:
-            cpu: 200m
-            memory: 500Mi
+            cpu: 10m
+            memory: 10Mi
         env:
           - name: SECRET_MH_API_KEY
             valueFrom:
